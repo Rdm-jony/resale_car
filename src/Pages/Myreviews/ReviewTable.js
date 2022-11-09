@@ -4,26 +4,26 @@ import { BsTrash } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import { toast } from 'react-hot-toast';
 
-const ReviewTable = ({ review,setDependency,dependency }) => {
-    const { rating, img, title, name,_id} = review;
+const ReviewTable = ({ review, setDependency, dependency }) => {
+    const { rating, img, title, name, _id } = review;
 
-    const handleDelete=id=>{
-        const agree=window.confirm("Are you sure to delet?")
-        if(agree){
-            fetch(`http://localhost:5000/my-review/${id}`,{
-                method:"DELETE"
+    const handleDelete = id => {
+        const agree = window.confirm("Are you sure to delet?")
+        if (agree) {
+            fetch(`http://localhost:5000/my-review/${id}`, {
+                method: "DELETE"
             })
-            .then(res=>res.json())
-            .then(data=>{
-                console.log(data)
-                if(data.deletedCount===1){
-                    toast.success('successfully deleted')
-                    setDependency(!dependency)
-                }
-            })
-            .catch(er=>console.log(er))
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount === 1) {
+                        toast.success('successfully deleted')
+                        setDependency(!dependency)
+                    }
+                })
+                .catch(er => console.log(er))
 
-            
+
         }
     }
     return (
@@ -44,13 +44,16 @@ const ReviewTable = ({ review,setDependency,dependency }) => {
             <td>
                 {title}
             </td>
-            <td className=''><span className='flex'>{rating}<AiFillStar className='my-auto text-warning'></AiFillStar></span> 
+            <td className='flex text-warning my-2'>
+                {
+                    [...Array(parseInt(rating)).keys()].map(star => <AiFillStar></AiFillStar>)
+                }
             </td>
             <td>
                 <BiEditAlt className='cursor-pointer'></BiEditAlt>
             </td>
             <td>
-                <BsTrash onClick={()=>handleDelete(_id)} className='cursor-pointer'></BsTrash>
+                <BsTrash onClick={() => handleDelete(_id)} className='cursor-pointer'></BsTrash>
             </td>
         </tr>
 
