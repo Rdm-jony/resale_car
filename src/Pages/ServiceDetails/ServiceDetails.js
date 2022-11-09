@@ -9,7 +9,7 @@ import Reviews from '../Reviews/Reviews';
 const ServiceDetails = () => {
    
     const service = useLoaderData();
-    const { img, title, price, description, capacity, spft, _id } = service;
+    const { img, title, description, capacity, spft } = service;
 
     return (
         <div>
@@ -32,7 +32,7 @@ const ServiceDetails = () => {
                     </div>
                 </div>
             </div>
-            <Reviews id={_id}></Reviews>
+            <Reviews service={service}></Reviews>
         </div>
     );
 };

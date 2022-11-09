@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { AiFillGooglePlusCircle } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import img from '../../../assets/login.svg'
 
 const LogIn = () => {
+    const location=useLocation()
+    const navigate=useNavigate()
+    const from=location.state?.from?.pathname||"/";
     const { signInWithEmail,signInWithGoogle } = useContext(AuthContext)
 
   
@@ -18,6 +21,7 @@ const LogIn = () => {
         signInWithEmail(email,password)
         .then(result=>{
             console.log(result.user)
+            navigate(from,{replace:true})
         })
         .catch(er=>console.log)
        
@@ -27,7 +31,7 @@ const LogIn = () => {
         signInWithGoogle()
         .then(result=>{
             console.log(result.user)
-            
+            navigate(from,{replace:true})
         })
         .catch(er=>console.log(er))
     }

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user,logOut } = useContext(AuthContext)
-    const handleLogOut=()=>{
+    const { user, logOut } = useContext(AuthContext)
+    const handleLogOut = () => {
         logOut()
-        .then()
-        .then()
+            .then()
+            .then()
     }
     return (
         <div>
@@ -27,8 +27,13 @@ const Header = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
-                        <li><Link to="home">Item 1</Link></li>
-                        <li><Link to="sign-up">Item 1</Link></li>
+                        <li><Link to="home">Home</Link></li>
+                       {
+                        user && <>
+                        <li><Link to="my-reviews">My Reviews</Link></li>
+                        <li><Link to="add-service">Add Service</Link></li>
+                        </>
+                       }
                     </ul>
                 </div>
                 <div className="navbar-end">
@@ -43,7 +48,9 @@ const Header = () => {
                             </div>
                             :
                             <>
-                                <button className='btn btn-ghost'>log in</button>
+                                <Link to="sign-up">
+                                    <button className='btn btn-ghost'>log in</button>
+                                </Link>
                             </>
                     }
                 </div>
