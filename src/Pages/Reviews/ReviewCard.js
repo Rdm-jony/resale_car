@@ -13,7 +13,11 @@ const ReviewCard = ({ review }) => {
                         <img className='w-10 h-10 rounded-full mr-2' src={img} alt=""></img>
                         <h2 className="card-title">{name}</h2>
                     </div>
-                    <p className='flex'>Rating: {rating}<span className='my-auto'><AiFillStar className='text-warning text-lg'></AiFillStar></span></p>
+                    <p>
+                        {
+                            [...Array(rating).keys()].map(star=><AiFillStar></AiFillStar>)
+                        }
+                    </p>
                     <p>{description}</p>
                     <div className="card-actions justify-end">
                     </div>
