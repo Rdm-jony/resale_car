@@ -3,14 +3,17 @@ import { AiFillGooglePlusCircle } from 'react-icons/ai';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import img from '../../../assets/login.svg'
+import useTitle from '../../../hooks/useTitle';
 
 const LogIn = () => {
-    const location=useLocation()
-    const navigate=useNavigate()
-    const from=location.state?.from?.pathname||"/";
-    const { signInWithEmail,signInWithGoogle } = useContext(AuthContext)
+    //update title
+    useTitle("signIn")
 
-  
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || "/";
+    const { signInWithEmail, signInWithGoogle } = useContext(AuthContext)
+
     const handleSignIn = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -18,22 +21,22 @@ const LogIn = () => {
         const password = form.password.value;
 
         console.log(email, password)
-        signInWithEmail(email,password)
-        .then(result=>{
-            console.log(result.user)
-            navigate(from,{replace:true})
-        })
-        .catch(er=>console.log)
-       
+        signInWithEmail(email, password)
+            .then(result => {
+                console.log(result.user)
+                navigate(from, { replace: true })
+            })
+            .catch(er => console.log)
+
     }
 
-    const handleGoogleSignIn=()=>{
+    const handleGoogleSignIn = () => {
         signInWithGoogle()
-        .then(result=>{
-            console.log(result.user)
-            navigate(from,{replace:true})
-        })
-        .catch(er=>console.log(er))
+            .then(result => {
+                console.log(result.user)
+                navigate(from, { replace: true })
+            })
+            .catch(er => console.log(er))
     }
     return (
         <div>
@@ -62,7 +65,7 @@ const LogIn = () => {
                             </div>
                             <div>
                                 <span className='font-bold text-purple-600'>Sign in with: </span>
-                            <AiFillGooglePlusCircle onClick={handleGoogleSignIn} className='text-orange-600 text-5xl cursor-pointer mx-auto'></AiFillGooglePlusCircle>
+                                <AiFillGooglePlusCircle onClick={handleGoogleSignIn} className='text-orange-600 text-5xl cursor-pointer mx-auto'></AiFillGooglePlusCircle>
                             </div>
                             <small>Not a member?<Link to="../sign-up" className="text-primary font-semibold">sign up</Link></small>
                         </form>

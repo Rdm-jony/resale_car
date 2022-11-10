@@ -4,10 +4,13 @@ import { AiOutlineUsergroupDelete, AiOutlineWifi, AiOutlinePlusSquare } from "re
 import { BiBed } from "react-icons/bi";
 import { MdEmojiFoodBeverage, MdPool } from "react-icons/md";
 import Reviews from '../Reviews/Reviews';
+import useTitle from '../../hooks/useTitle';
 
 
 const ServiceDetails = () => {
-   
+    //update title
+    useTitle("srevice_details")
+
     const service = useLoaderData();
     const { img, title, description, capacity, spft } = service;
 

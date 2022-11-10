@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import ServiceCard from '../Home/HomeSevices/ServiceCard';
 import Loader from '../Loader/Loader';
 
 const Services = () => {
+     //update title
+     useTitle("services")
+
     const{loader}=useContext(AuthContext)
     const services = useLoaderData();
     return (

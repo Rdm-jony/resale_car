@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/login.svg'
+import useTitle from '../../hooks/useTitle';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Register = () => {
+    //update title
+    useTitle("signUp")
+
     const { signUpWithEmail,updateNamePhoto } = useContext(AuthContext)
     const navigate=useNavigate()
    

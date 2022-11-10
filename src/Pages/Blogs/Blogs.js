@@ -1,6 +1,9 @@
 import React from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const Blogs = () => {
+    //update title
+    useTitle("blogs")
     return (
         <div className='flex flex-col gap-4 m-10'>
             <div className="card w-full bg-base-100 shadow-xl border-2">

@@ -1,7 +1,10 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const Addservice = () => {
+    //update title
+    useTitle("add_sevice")
 
     const handleAddService = (event) => {
         event.preventDefault()
@@ -12,7 +15,7 @@ const Addservice = () => {
         const price = form.price.value;
         const capacity = form.capacity.value;
         const spft = form.spft.value;
-        const time=new Date().toLocaleString();
+        const time = new Date().toLocaleString();
         console.log(title, img, description, price, capacity, spft)
         const service = {
             title,
@@ -24,22 +27,22 @@ const Addservice = () => {
             spft
         }
 
-        fetch("http://localhost:5000/all-services",{
-            method:"POST",
-            headers:{
-                "content-type":"application/json"
+        fetch("http://localhost:5000/all-services", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
             },
-            body:JSON.stringify(service)
+            body: JSON.stringify(service)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-            if(data.acknowledged){
-                toast.success("successfully added the service!")
-            }
-            form.reset()
-        })
-        .catch(er=>console.log(er))
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    toast.success("successfully added the service!")
+                }
+                form.reset()
+            })
+            .catch(er => console.log(er))
     }
     return (
         <div className='flex justify-center'>
