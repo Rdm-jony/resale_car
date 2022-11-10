@@ -5,7 +5,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 const Banner = () => {
     return (
-        <div className='img-overlay relative block'>
+        <div className='img-overlay relative block '>
             <img className='w-full h-screen' src={img} alt=''></img>
             <div className='absolute top-1/3 z-10 w-full'>
                 <h1 className="text-6xl text-center text-slate-300">Enjoy a Luxury Experience</h1>
