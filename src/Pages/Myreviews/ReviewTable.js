@@ -3,10 +3,11 @@ import { AiFillStar } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import { toast } from 'react-hot-toast';
-import EditReview from '../EditReview/EditReview';
+import { useNavigate } from 'react-router-dom';
 
 const ReviewTable = ({ review, setDependency, dependency }) => {
-    const { rating, img, title, name, _id,description } = review;
+    const { rating, img, title, name, _id } = review;
+    const navigate = useNavigate()
 
     const handleDelete = id => {
         const agree = window.confirm("Are you sure to delet?")
@@ -23,9 +24,11 @@ const ReviewTable = ({ review, setDependency, dependency }) => {
                     }
                 })
                 .catch(er => console.log(er))
-
-
         }
+    }
+
+    const handleEdit = () => {
+        navigate(`/my-review/edit/${_id}`)
     }
     return (
 
@@ -47,17 +50,19 @@ const ReviewTable = ({ review, setDependency, dependency }) => {
             </td>
             <td className='flex text-warning my-2'>
                 {
+
                     [...Array(parseInt(rating)).keys()].map(star => <AiFillStar></AiFillStar>)
                 }
+
             </td>
             <td>
-                <label >
-                <BiEditAlt  className='cursor-pointer'></BiEditAlt></label>
+
+                <BiEditAlt onClick={() => handleEdit(_id)} className='cursor-pointer'></BiEditAlt>
             </td>
             <td>
                 <BsTrash onClick={() => handleDelete(_id)} className='cursor-pointer'></BsTrash>
             </td>
-            {/* <EditReview></EditReview> */}
+
         </tr>
 
     );

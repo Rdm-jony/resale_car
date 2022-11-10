@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Addservice from "../Pages/AddService/Addservice";
+import EditReview from "../Pages/EditReview/EditReview";
 import Home from "../Pages/Home/Home/Home";
 import Myreviews from "../Pages/Myreviews/Myreviews";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
                 path: "add-service",
                 element:<Addservice><Myreviews></Myreviews></Addservice>,
             },
+            {
+                path: "/my-review/edit/:id",
+                loader:()=>fetch("http://localhost:5000/my-review"),
+                element:<EditReview></EditReview>
+            }
             
 
         ]

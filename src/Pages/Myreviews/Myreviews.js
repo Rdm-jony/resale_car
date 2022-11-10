@@ -17,7 +17,7 @@ const Myreviews = () => {
     return (
         <div>
             {
-                reviews.length>0 ?
+                reviews?.length!==0?
                     <div>
                         <div className="overflow-x-auto w-full">
                             <table className="table w-full">
@@ -32,7 +32,7 @@ const Myreviews = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        reviews.map(review => <ReviewTable key={review._id} review={review} dependency={dependency} setDependency={setDependency}></ReviewTable>)
+                                        reviews?.map(review => <ReviewTable key={review._id} review={review} dependency={dependency} setDependency={setDependency}></ReviewTable>)
                                     }
 
                                 </tbody>
