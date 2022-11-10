@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import img from '../../../assets/login.svg'
 import useTitle from '../../../hooks/useTitle';
+import jwt from '../../../jwt/jwt';
 
 const LogIn = () => {
     //update title
@@ -12,7 +13,7 @@ const LogIn = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || "/";
-    const { signInWithEmail, signInWithGoogle } = useContext(AuthContext)
+    const { signInWithEmail, signInWithGoogle, user } = useContext(AuthContext)
 
     const handleSignIn = (event) => {
         event.preventDefault()
@@ -24,6 +25,11 @@ const LogIn = () => {
         signInWithEmail(email, password)
             .then(result => {
                 console.log(result.user)
+
+                const setUser = {
+                    email: result.user.email
+                }
+                jwt(setUser)
                 navigate(from, { replace: true })
             })
             .catch(er => console.log)
@@ -34,7 +40,11 @@ const LogIn = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
-                navigate(from, { replace: true })
+                const setUser = {
+                    email: result.user.email
+                }
+                jwt(setUser)
+                // navigate(from, { replace: true })
             })
             .catch(er => console.log(er))
     }
