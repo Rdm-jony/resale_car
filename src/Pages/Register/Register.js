@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/login.svg'
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Register = () => {
     const { signUpWithEmail,updateNamePhoto } = useContext(AuthContext)
+    const navigate=useNavigate()
    
     const handleSignup = event => {
         event.preventDefault()
@@ -23,6 +24,7 @@ const Register = () => {
                 console.log(result.user)
                 updateUserProfile(profile)
                 form.reset()
+                navigate("/")
             })
             .catch(er => console.log(er))
 
@@ -62,7 +64,7 @@ const Register = () => {
 
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn btn-primary">Sign up</button>
                             </div>
                             <small>Already have account?<Link to="../sign-in" className="text-primary font-semibold">sign in</Link></small>
                         </form>

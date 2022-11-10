@@ -1,6 +1,5 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 
 const Addservice = () => {
 
@@ -43,7 +42,7 @@ const Addservice = () => {
         .catch(er=>console.log(er))
     }
     return (
-        <div>
+        <div className='flex justify-center'>
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                 <form onSubmit={handleAddService} className="card-body">
                     <div className="form-control">

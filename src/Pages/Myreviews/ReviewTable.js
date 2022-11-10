@@ -3,9 +3,10 @@ import { AiFillStar } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import { toast } from 'react-hot-toast';
+import EditReview from '../EditReview/EditReview';
 
 const ReviewTable = ({ review, setDependency, dependency }) => {
-    const { rating, img, title, name, _id } = review;
+    const { rating, img, title, name, _id,description } = review;
 
     const handleDelete = id => {
         const agree = window.confirm("Are you sure to delet?")
@@ -50,11 +51,13 @@ const ReviewTable = ({ review, setDependency, dependency }) => {
                 }
             </td>
             <td>
-                <BiEditAlt className='cursor-pointer'></BiEditAlt>
+                <label >
+                <BiEditAlt  className='cursor-pointer'></BiEditAlt></label>
             </td>
             <td>
                 <BsTrash onClick={() => handleDelete(_id)} className='cursor-pointer'></BsTrash>
             </td>
+            {/* <EditReview></EditReview> */}
         </tr>
 
     );

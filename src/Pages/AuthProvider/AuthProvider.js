@@ -58,7 +58,7 @@ const AuthProvider = ({children}) => {
         }
     },[])
 
-    const authinfo = {loader,logOut,user, signUpWithEmail,updateNamePhoto,signInWithEmail,signInWithGoogle }
+    const authinfo = {setLoader,loader,logOut,user, signUpWithEmail,updateNamePhoto,signInWithEmail,signInWithGoogle }
     console.log(user)
 
     return (
